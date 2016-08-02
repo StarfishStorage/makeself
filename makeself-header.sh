@@ -1,3 +1,8 @@
+# This file was downloaded from https://github.com/StarfishStorage/makeself/blob/master/makeself-header.sh
+# Any changes to this file has to be pushed to the GitHub repo as well, because of GPL licence.
+
+# set -euo pipefail  # flags don't work with makeself
+
 cat << EOF  > "$archname"
 #!/bin/sh
 # This script was generated using Makeself $MS_VERSION
@@ -140,7 +145,7 @@ MS_Help()
 			the embedded script
   --noprogress          Do not show the progress during the decompression
   --nox11               Do not spawn an xterm
-  --nochown             Do not give the extracted files to the current user
+  --chown               Do not give the extracted files to the current user
   --target dir          Extract directly to a target directory
                         directory path can be either absolute or relative
   --tar arg1 [arg2 ...] Access the contents of the archive through the tar command
@@ -219,7 +224,7 @@ xterm_loop=
 noprogress=$NOPROGRESS
 nox11=$NOX11
 copy=$COPY
-ownership=y
+ownership=n
 verbose=n
 
 initargs="\$@"
@@ -331,8 +336,8 @@ EOLSM
 	nox11=y
 	shift
 	;;
-    --nochown)
-	ownership=n
+    --chown)
+	ownership=y
 	shift
 	;;
     --xwin)
