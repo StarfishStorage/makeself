@@ -212,10 +212,10 @@ MS_Check()
 UnTAR()
 {
     if test x"\$quiet" = xn; then
-		tar \$1vf - 2>&1 || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
+		tar \$1v --no-overwrite-dir --no-same-owner -f - 2>&1 || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
     else
 
-		tar \$1f - 2>&1 || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
+		tar \$1 --no-overwrite-dir --no-same-owner -f - 2>&1 || { echo Extraction failed. > /dev/tty; kill -15 \$$; }
     fi
 }
 
