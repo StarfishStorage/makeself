@@ -499,9 +499,11 @@ if test x"\$script" != x; then
 		MS_Printf "OK to execute: \$script \$scriptargs \$* ? [Y/n] "
 		read yn
 		if test x"\$yn" = x -o x"\$yn" = xy -o x"\$yn" = xY; then
+			umask \$ORIG_UMASK
 			eval "\"\$script\" \$scriptargs \"\\\$@\""; res=\$?;
 		fi
     else
+		umask \$ORIG_UMASK
 		eval "\"\$script\" \$scriptargs \"\\\$@\""; res=\$?
     fi
     if test "\$res" -ne 0; then
